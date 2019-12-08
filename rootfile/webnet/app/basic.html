@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+
+<body>
+    <div style="width:90%;position: relative; left:2%;">
+        <table class="layui-hide" id="suTab" lay-filter="su"></table>
+
+    </div>
+
+    <script src="../layui/layui.js" charset="utf-8"></script>
+    <script>
+        function tagSuState(table) {
+            table.render({
+                elem: '#suTab',
+                url: '/cgi-bin/dev_data',
+                method: 'GET',
+                parseData: function (res) { //res 即为原始返回的数据
+                    if (res.code == -1) {
+                        return {
+                            "code": 1, //解析接口状态
+                            "msg": "暂无数据", //解析提示文本
+                            "count": 0, //解析数据长度
+                            "data": [] //解析数据列表
+                        };
+                    } else {
+                        return {
+                            "code": 0, //解析接口状态
+                            "msg": "", //解析提示文本
+                            "count": res.count, //解析数据长度
+                            "data": res.items //解析数据列表
+                        };
+                    }
+                },
+                cols: [
+                    [{
+                        field: 'name',
+                        title: '名称'
+                    }, {
+                        field: 'value',
+                        title: '值'
+                    }]
+                ],
+                id: 'listReload',
+                height: 410,
+                page: true,
+                limit: 10,
+                limits: [5, 10, 15]
+            });
+        }
+
+        function _tagSuState(table){
+            return function() {
+                tagSuState(table);
+            }
+        }
+
+        layui.use(['element', 'jquery', 'table'], function () {
+            var element = layui.element;
+            var $ = layui.jquery;
+            var table = layui.table;
+            tagSuState(table);
+
+            var t = window.setInterval(_tagSuState(table), 1200);
+        });
+    </script>
+</body>
+
+</html>
