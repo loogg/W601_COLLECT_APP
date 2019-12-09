@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>W601</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script type="text/javascript">
+        function jumpIfream(src) {
+            document.getElementById("main-body").src = src;
+        }
+    </script>
+
+    <style>
+        .layui-nav-tree {
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo" style="font-size: 30px;">W601</div>
+
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-set">设置</i>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" id="reboot">重启</a></dd>
+                        <dd><a href="javascript:;" id="download">固件升级</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">数据浏览</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <iframe src="app/basic.html" id="main-body" height="95%" width="100%" frameborder="0"></iframe>
+        </div>
+
+        <div class="layui-footer" style="text-align: center;">
+            <!-- 底部固定区域 -->
+            © 2019 w601 web
+        </div>
+    </div>
+
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script>
+        layui.use(['element', 'layer', 'upload'], function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            var upload = layui.upload;
+
+            layui.$('#reboot').on('click', function () {
+                $.ajax({
+                    url: "/cgi-bin/sysreset", //json文件位置 
+                    type: "GET",
+                    success: function (data) { //请求成功完成后要执行的方法
+                        var res = JSON.parse(data);
+                        layer.close(loadIndex)
+                        if (res.code == 0){
+                            layer.msg("重启成功!");
+                        }
+                    },
+                    error: function () {
+                        layer.close(loadIndex)
+                        layer.msg("重启失败！");
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') { //超时,status还有success,error等值的情况
+                            layer.close(loadIndex)
+                            layer.msg('重启超时!请正确配置通信参数!')
+                        }
+                    },
+                    beforeSend: function () {
+                        loadIndex = layer.load(1, {
+                            shade: [0.5, '#DBDBDB'] //0.1透明度的白色背景
+                        });
+                    },
+                })
+            });
+
+            upload.render({
+                elem: '#download', //绑定元素  
+                url: "/data/bin", //上传接口   
+                accept: 'file', //允许上传的文件类型             
+                exts: 'rbl', //上传文件的后缀     
+                done: function (res) {
+                    layer.close(loadIndex)
+                    if (res.code == 0)
+                        layer.msg("上传成功！"), {
+                            time: 500
+                        }
+                },
+                error: function () {
+                    //请求异常回调
+                    layer.close(loadIndex)
+                },
+                complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                    if (status == 'timeout') { //超时,status还有success,error等值的情况
+                        layer.close(loadIndex)
+                        layer.msg('下装失败!请正确配置通信参数!')
+                    }
+                },
+                before: function () {
+                    loadIndex = layer.load(1, {
+                        shade: [0.5, '#DBDBDB'] //0.1透明度的白色背景
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

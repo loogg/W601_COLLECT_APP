@@ -1,0 +1,56 @@
+License Agreement.
+You should carefully read the following terms and conditions before
+using Modbus Slave. Unless you have a different license agreement signed
+by Witte Software, your use of this software indicates your acceptance of
+this license agreement and warranty. If you do not accept these terms you
+must cease using this software immediately.
+
+Copyright.
+Modbus Slave ("The Software") is copyright 2002-2014 by Witte Software,
+all rights reserved.
+
+Evaluation and Registration.
+This is not free software. You are hereby licensed to use the Software
+for evaluation purposes without charge for a period of 30 days.
+If you use the Software after the 30 day evaluation period a registration
+fee is required.
+Unregistered use of the Software after the 30-day evaluation period is
+in violation of U.S. and international copyright laws.
+
+One registered copy of the Software may either be used by a single person
+who uses the software personally on one or more computers, or installed
+on a single computer used by multiple people, but not both.
+
+An organization may purchase a multi-user site license amounting to either
+the number of individuals who have access to the Software on any number
+of computers, or the number of computers that will access the Software by
+any number of individuals.  A site is defined as all company locations
+within a 10 mile radius.  Site licenses do not cover subsidiary
+companies, or customers of a company.
+
+For information on quantity pricing and site licenses, please visit
+http://www.modbustools.com
+
+Distribution.
+Provided that you do not include your License Key you are hereby licensed
+to make copies of the Software; give exact copies of the original to
+anyone; and distribute the Software in its unmodified form via electronic
+means. You are specifically prohibited from charging for any such copies.
+
+
+LIMITED WARRANTY. THE SOFTWARE IS PROVIDED AS IS AND WITTE
+SOFTWARE DISCLAIMS ALL WARRANTIES RELATING TO THIS
+SOFTWARE, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE.
+
+LIMITATION ON DAMAGES. NEITHER WITTE SOFTWARE NOR ANYONE
+INVOLVED IN THE CREATION, PRODUCTION, OR DELIVERY OF THIS
+SOFTWARE SHALL BE LIABLE FOR ANY INDIRECT, CONSEQUENTIAL, OR
+INCIDENTAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+SUCH SOFTWARE EVEN IF WITTE SOFTWARE HAS BEEN ADVISED OF
+THE POSSIBILITY OF SUCH DAMAGES OR CLAIMS. IN NO EVENT SHALL
+WITTE SOFTWARE'S LIABILITY FOR ANY DAMAGES EXCEED THE
+PRICE PAID FOR THE LICENSE TO USE THE SOFTWARE, REGARDLESS
+OF THE FORM OF CLAIM. THE PERSON USING THE SOFTWARE BEARS ALL
+RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE.
