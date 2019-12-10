@@ -42,14 +42,18 @@
             <div class="layui-side-scroll">
                 <ul class="layui-nav layui-nav-tree" lay-filter="test">
                     <li class="layui-nav-item">
-                        <a href="javascript:;">数据浏览</a>
+                        <a href="javascript:;" onclick='jumpIfream("app/dev_data.html")'>数据浏览</a>
+                    </li>
+
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" onclick='jumpIfream("app/sys_info.html")'>设备信息</a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div class="layui-body">
-            <iframe src="app/basic.html" id="main-body" height="95%" width="100%" frameborder="0"></iframe>
+            <iframe src="app/dev_data.html" id="main-body" height="95%" width="100%" frameborder="0"></iframe>
         </div>
 
         <div class="layui-footer" style="text-align: center;">

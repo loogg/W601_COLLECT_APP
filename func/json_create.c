@@ -35,3 +35,19 @@ char *json_create_collect_items(void)
         cJSON_Delete(root);
     return json_data;
 }
+
+char *json_create_mem(void)
+{
+    cJSON *root = cJSON_CreateObject();
+    cJSON_AddItemToObject(root, "code", cJSON_CreateNumber(0));
+
+    rt_uint32_t total_mem,used_mem,max_used_mem;
+    rt_memory_info(&total_mem, &used_mem, &max_used_mem);
+
+    cJSON_AddItemToObject(root, "total_mem", cJSON_CreateNumber(total_mem));
+    cJSON_AddItemToObject(root, "used_mem", cJSON_CreateNumber(used_mem));
+    char *json_data = cJSON_PrintUnformatted(root);
+    if (root)
+        cJSON_Delete(root);
+    return json_data;
+}

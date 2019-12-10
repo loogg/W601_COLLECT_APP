@@ -38,3 +38,12 @@ void cgi_devdata_handler(struct webnet_session *session)
         }
     }
 }
+
+void cgi_mem_handler(struct webnet_session *session)
+{
+    cgi_head();
+    char *body = RT_NULL;
+    body = json_create_mem();
+    webnet_session_printf(session, body);
+    rt_free(body);
+}

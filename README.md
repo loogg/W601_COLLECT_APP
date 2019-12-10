@@ -290,3 +290,7 @@ void cgi_devdata_handler(struct webnet_session *session)
 ### 5.4 onenet平台数据显示
 
 ![onenet](./figure/gif/onenet.gif)
+
+### 5.5 网页设备信息显示
+
+![sys_info](./figure/gif/sys_info.gif)

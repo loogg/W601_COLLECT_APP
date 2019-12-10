@@ -5,4 +5,5 @@
 #include "board.h"
 
 char *json_create_collect_items(void);
+char *json_create_mem(void);
 #endif

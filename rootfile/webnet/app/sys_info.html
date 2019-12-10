@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../ECharts/echarts.min.js"></script>
+    <script src="../layui/layui.js" charset="utf-8"></script>
+    <style>
+        .mem {
+            width: 400px;
+            height: 400px;
+            margin: 60px auto 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mem" id="mem">
+
+    </div>
+
+    <script>
+        var memChart = echarts.init(document.getElementById('mem'));
+        memChart.setOption({
+            title: {
+                text: '设备内存使用情况',
+                x: 'center',
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            series: [{
+                name: '内存使用',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 30,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            var $ = layui.jquery;
+
+            function get_dev_mem() {
+                $.ajax({
+                    type: "GET",
+                    url: "/cgi-bin/mem",
+                    success: function (resp) {
+                        var res = JSON.parse(resp);
+                        if (res.code == 0) {
+                            memChart.setOption({
+                                series: [{
+                                    data: [
+                                        {value: res.used_mem,name:"已使用内存"},
+                                        {value: res.total_mem-res.used_mem,name:"剩余内存"}
+                                    ]
+                                }]
+                            })
+                        }
+                    }
+                })
+            }
+
+            get_dev_mem();
+            window.setInterval(get_dev_mem, 2000);
+        })
+    </script>
+</body>
+
+</html>
